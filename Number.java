@@ -6,96 +6,102 @@ class Number
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        int n, choice;
+
         System.out.print("Enter number: ");
-        int n = Integer.parseInt(br.readLine());
+        n = Integer.parseInt(br.readLine());
 
-        int ch;
+        System.out.println("1. Prime");
+        System.out.println("2. Palindrome");
+        System.out.println("3. Armstrong");
+        System.out.println("4. Sum of digits");
+        System.out.println("5. Reverse");
 
-        do
+        System.out.print("Enter choice: ");
+        choice = Integer.parseInt(br.readLine());
+
+        if(choice == 1)
         {
-            System.out.println("\n1 Prime");
-            System.out.println("2 Palindrome");
-            System.out.println("3 Armstrong");
-            System.out.println("4 Sum of Digits");
-            System.out.println("5 Reverse");
-            System.out.println("6 Exit");
+            int count = 0;
 
-            System.out.print("Enter choice: ");
-            ch = Integer.parseInt(br.readLine());
-
-            switch(ch)
+            for(int i = 1; i <= n; i++)
             {
-                case 1:
-                    int count = 0;
-                    for(int i = 1; i <= n; i++)
-                    {
-                        if(n % i == 0)
-                            count++;
-                    }
-
-                    if(count == 2)
-                        System.out.println("Prime");
-                    else
-                        System.out.println("Not Prime");
-                    break;
-
-                case 2:
-                    int x = n, rev = 0;
-                    while(x > 0)
-                    {
-                        rev = rev * 10 + x % 10;
-                        x = x / 10;
-                    }
-
-                    if(n == rev)
-                        System.out.println("Palindrome");
-                    else
-                        System.out.println("Not Palindrome");
-                    break;
-
-                case 3:
-                    int y = n, sum = 0;
-                    while(y > 0)
-                    {
-                        int d = y % 10;
-                        sum = sum + d * d * d;
-                        y = y / 10;
-                    }
-
-                    if(n == sum)
-                        System.out.println("Armstrong");
-                    else
-                        System.out.println("Not Armstrong");
-                    break;
-
-                case 4:
-                    int z = n, s = 0;
-                    while(z > 0)
-                    {
-                        s = s + z % 10;
-                        z = z / 10;
-                    }
-                    System.out.println("Sum = " + s);
-                    break;
-
-                case 5:
-                    int r = n, rev1 = 0;
-                    while(r > 0)
-                    {
-                        rev1 = rev1 * 10 + r % 10;
-                        r = r / 10;
-                    }
-                    System.out.println("Reverse = " + rev1);
-                    break;
-
-                case 6:
-                    System.out.println("Exit");
-                    break;
-
-                default:
-                    System.out.println("Wrong Choice");
+                if(n % i == 0)
+                    count++;
             }
+
+            if(count == 2)
+                System.out.println("Prime");
+            else
+                System.out.println("Not Prime");
         }
-        while(ch != 6);
+
+        else if(choice == 2)
+        {
+            int temp = n;
+            int rev = 0;
+
+            while(n > 0)
+            {
+                int r = n % 10;
+                rev = rev * 10 + r;
+                n = n / 10;
+            }
+
+            if(temp == rev)
+                System.out.println("Palindrome");
+            else
+                System.out.println("Not Palindrome");
+        }
+
+        else if(choice == 3)
+        {
+            int temp = n;
+            int sum = 0;
+
+            while(n > 0)
+            {
+                int r = n % 10;
+                sum = sum + r * r * r;
+                n = n / 10;
+            }
+
+            if(temp == sum)
+                System.out.println("Armstrong");
+            else
+                System.out.println("Not Armstrong");
+        }
+
+        else if(choice == 4)
+        {
+            int sum = 0;
+
+            while(n > 0)
+            {
+                sum = sum + n % 10;
+                n = n / 10;
+            }
+
+            System.out.println("Sum = " + sum);
+        }
+
+        else if(choice == 5)
+        {
+            int rev = 0;
+
+            while(n > 0)
+            {
+                int r = n % 10;
+                rev = rev * 10 + r;
+                n = n / 10;
+            }
+
+            System.out.println("Reverse = " + rev);
+        }
+
+        else
+        {
+            System.out.println("Wrong choice");
+        }
     }
 }
